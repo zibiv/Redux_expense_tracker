@@ -4,7 +4,7 @@ import { deleteTransaction } from '../features/transactions/transactionsSlice';
 
 export default function Transaction({ transaction }) {
   const dispatch = useDispatch();
-
+  //обработчик удаления конкретной транзакции
   const handleDelete = (e) => {
     dispatch(deleteTransaction(transaction));
   };

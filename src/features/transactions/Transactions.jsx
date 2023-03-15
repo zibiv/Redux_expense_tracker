@@ -5,6 +5,7 @@ import TransactionForm from '../../components/TransactionForm';
 import TransactionList from '../../components/TransactionList';
 
 const Transactions = () => {
+  //получение всех транзакций одним массивом
   const transactions = useSelector(selectFlattenedTransactions);
   return (
     <div className="comments-container">

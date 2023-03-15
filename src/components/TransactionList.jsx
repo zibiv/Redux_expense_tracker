@@ -2,6 +2,7 @@ import React from 'react';
 import Transaction from './Transaction';
 
 export default function TransactionList({ transactions }) {
+  //генерация из массива транзакций компонентов транзакции
   return (
     <section className="new-transactions-section">
       <h2>Transactions</h2>
