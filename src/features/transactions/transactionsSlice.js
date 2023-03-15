@@ -1,4 +1,5 @@
 export const CATEGORIES = ['housing', 'food', 'transportation', 'utilities', 'clothing', 'healthcare', 'personal', 'education', 'entertainment'];
+//создание объекта который будет содержать ключ - название категории, значение - пустой массив, в дальнейшем в таких массивах будут хранится объекты транзакций
 const initialState = Object.fromEntries(CATEGORIES.map(category => [category, []]))
 
 export const addTransaction = (transaction) => {
@@ -23,7 +24,9 @@ const transactionsReducer = (state = initialState, action) => {
   let newTransactionsForCategory;
   switch (action.type) {
     case 'transactions/addTransaction':
+      //создание новой транзакции - деструктуризация всех транзакций данной категории, добавление новой транзакции в новый массив
       newTransactionsForCategory = [...state[action.payload.category].slice(), action.payload]
+      //собираем новый объект транзакций обновляя массив для данной категории
       return { ...state, [action.payload.category]: newTransactionsForCategory}
     case 'transactions/deleteTransaction':
       const deletedIndex = state[action.payload.category].findIndex(transaction => transaction.id === action.payload.id);

@@ -8,6 +8,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 export default function TransactionForm({ categories }) {
   const dispatch = useDispatch();
+  //состояния для контроля и заполнения
   const [category, setCategory] = useState(CATEGORIES[0]);
   const [description, setDescription] = useState('');
   const [amount, setAmount] = useState(0);
@@ -22,6 +23,7 @@ export default function TransactionForm({ categories }) {
         id: uuidv4(),
       })
     );
+    //сброс состояний до начальных значений при отправки формы
     setCategory(CATEGORIES[0]);
     setDescription('');
     setAmount(0);
@@ -65,6 +67,7 @@ export default function TransactionForm({ categories }) {
               onChange={(e) => setAmount(e.currentTarget.value)}
               type="number"
               step="0.01"
+              min="0"
             />
           </div>
         </div>
