@@ -10,8 +10,8 @@ const budgetsSliceOptions = {
   reducers: {
     editBudget(state, action){
       //мы имеем возможность при использовании createSlice изменять состояние слайса через мутацию
-      const idxToChange = state.category.findIndex(budget => budget.category === action.payload.category);
-      state.category[idxToChange].amount = action.payload.amount;
+      const idxToChange = state.findIndex(budget => budget.category === action.payload.category);
+      state[idxToChange].amount = action.payload.amount;
     },
   }
 }
