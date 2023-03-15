@@ -5,10 +5,14 @@ import { selectTransactions } from '../features/transactions/transactionsSlice';
 
 export default function Budget({ budget }) {
   const dispatch = useDispatch();
+  //размер суммы бюджета будет управляться состоянием компонента, для того что бы иметь возможность управлять данными в input формы 
   const [amount, setAmount] = useState(budget.amount);
+  //получить все транзакции, в дальнейшем будет использоваться только транзакции относящиеся к категории данного бюджета
+  //transactions[budget.category]
   const transactions = useSelector(selectTransactions);
 
   const handleEdit = (e) => {
+    //при отправке формы запускается этот обработчик он диспатчет editBudget действие с соответствующим объектом
     e.preventDefault();
     dispatch(editBudget({ category: budget.category, amount: amount }));
   };
@@ -19,6 +23,7 @@ export default function Budget({ budget }) {
       .reduce((amount1, amount2) => amount1 + amount2, 0);
   };
 
+  //для добавления имени класса для применения подходящего стиля
   const getFundsRemainingClassName = (amount) => {
     if (parseFloat(amount) === 0) {
       return null;
@@ -26,8 +31,10 @@ export default function Budget({ budget }) {
 
     return parseFloat(amount) > 0 ? 'positive' : 'negative';
   };
-
+  
+  //получение итоговой суммы бюджета после проведения транзакций
   const remainingFunds = Number.parseFloat(budget.amount - calculateTotalExpenses()).toFixed(2);
+  //получение класса в зависимости от положительной или отрицательной суммы бюджета после проведения транзакций
   const fundsRemainingClassName = getFundsRemainingClassName(remainingFunds);
 
   return (

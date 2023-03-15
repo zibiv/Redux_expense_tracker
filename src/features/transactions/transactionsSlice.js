@@ -16,6 +16,7 @@ export const deleteTransaction = (transaction) => {
 }
 
 export const selectTransactions = (state) => state.transactions;
+//получение массива со всеми транзакциями которые есть
 export const selectFlattenedTransactions = (state) => Object.values(state.transactions).reduce((a,b) => [...a, ...b], []);
 
 const transactionsReducer = (state = initialState, action) => {
